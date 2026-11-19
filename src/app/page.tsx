@@ -1,5 +1,6 @@
 'use client';
 
+import AnimatedSkills from '@/components/animated-skills';
 import { useState, type FormEvent } from 'react';
 import Image from 'next/image';
 import { motion } from 'motion/react';
@@ -31,7 +32,6 @@ import {
   profile,
   statistics,
   careers,
-  skills,
   faqs,
   advantages,
   projects,
@@ -506,76 +506,6 @@ function Career() {
   );
 }
 
-function Skills() {
-  const icons = [
-    { label: 'HTML', symbol: '5', color: '#ef652a' },
-    { label: 'CSS', symbol: '3', color: '#38a5ef' },
-    { label: 'JavaScript', symbol: 'JS', color: '#f4df4e' },
-    { label: 'React', symbol: '⚛', color: '#60dafb' },
-    { label: 'TypeScript', symbol: 'TS', color: '#3178c6' },
-    { label: 'Code', symbol: '⌘', color: '#a45be6' },
-  ];
-
-  return (
-    <section id='skills' className='section container-main'>
-      <div className='section-marker' />
-
-      <Heading
-        title='My Core Skill'
-        subtitle='An overview of the technologies and frameworks I work with.'
-      />
-
-      <div className='grid items-center gap-14 md:grid-cols-2'>
-        <div className='relative mx-auto grid aspect-square w-full max-w-[420px] grid-cols-3 place-items-center gap-4'>
-          <div className='pointer-events-none absolute inset-[12%] rounded-full border border-purple-500/15' />
-          <div className='pointer-events-none absolute inset-[24%] rounded-full border border-purple-500/15' />
-          <div className='pointer-events-none absolute inset-[36%] rounded-full border border-purple-500/15' />
-
-          {icons.map((item) => (
-            <div
-              key={item.label}
-              title={item.label}
-              className='relative z-10 flex h-16 w-22 items-center justify-center rounded-lg border border-fuchsia-500/40 bg-[#101014] text-2xl font-bold'
-              style={{ color: item.color }}
-            >
-              {item.symbol}
-            </div>
-          ))}
-        </div>
-
-        <div className='space-y-7'>
-          {skills.map((skill) => (
-            <div key={skill.name}>
-              <div className='mb-3 flex justify-between text-sm font-semibold'>
-                <span>{skill.name}</span>
-                <span>{skill.percentage}%</span>
-              </div>
-
-              <div
-                className='skill-track'
-                role='progressbar'
-                aria-label={`${skill.name} proficiency`}
-                aria-valuemin={0}
-                aria-valuemax={100}
-                aria-valuenow={skill.percentage}
-              >
-                <motion.div
-                  className='skill-fill'
-                  initial={{ width: 0 }}
-                  whileInView={{
-                    width: `${skill.percentage}%`,
-                  }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8 }}
-                />
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 function FAQ() {
   return (
@@ -1072,7 +1002,7 @@ export default function Home() {
       <Hero />
       <About />
       <Career />
-      <Skills />
+      <AnimatedSkills />
       <FAQ />
       <Comparison />
       <Projects />
