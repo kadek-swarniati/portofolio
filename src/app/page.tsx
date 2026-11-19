@@ -1,6 +1,7 @@
 'use client';
 
 import AnimatedSkills from '@/components/animated-skills';
+import AnimatedTestimonials from '@/components/animated-testimonials';
 import { useState, type FormEvent } from 'react';
 import Image from 'next/image';
 import { motion } from 'motion/react';
@@ -35,7 +36,6 @@ import {
   faqs,
   advantages,
   projects,
-  testimonials,
 } from '@/data/portfolio';
 
 const navigation = [
@@ -506,7 +506,6 @@ function Career() {
   );
 }
 
-
 function FAQ() {
   return (
     <section id='faq' className='section container-main'>
@@ -685,43 +684,6 @@ function Projects() {
           <ProjectCard key={project.id} project={project} />
         ))}
       </div>
-    </section>
-  );
-}
-
-function Testimonials() {
-  return (
-    <section className='section container-main'>
-      <div className='section-marker' />
-
-      <Heading
-        title='What People Say About Me'
-        subtitle='Professional feedback and testimonials.'
-      />
-
-      {testimonials.length > 0 ? (
-        <div className='grid gap-5 md:grid-cols-3'>
-          {testimonials.map((review, index) => (
-            <Card
-              key={`${review.name}-${index}`}
-              className='dark-card p-6 text-white'
-            >
-              <strong className='text-sm'>{review.name}</strong>
-              <p className='text-xs text-zinc-500'>{review.role}</p>
-              <p className='text-sm leading-7 text-zinc-400'>
-                &ldquo;{review.quote}&rdquo;
-              </p>
-            </Card>
-          ))}
-        </div>
-      ) : (
-        <Card className='dark-card mx-auto max-w-2xl p-8 text-center text-white'>
-          <p className='text-sm text-zinc-400'>
-            Verified professional testimonials will be featured here when
-            available.
-          </p>
-        </Card>
-      )}
     </section>
   );
 }
@@ -946,7 +908,7 @@ function Footer() {
 
           {/* COPYRIGHT */}
           <p className='mt-2 text-xs text-zinc-500'>
-            © {new Date().getFullYear()} Kadek Swarniati. All rights reserved.
+            © 2026 Kadek Swarniati. All rights reserved.
           </p>
         </div>
 
@@ -1006,7 +968,7 @@ export default function Home() {
       <FAQ />
       <Comparison />
       <Projects />
-      <Testimonials />
+      <AnimatedTestimonials />
       <Contact />
       <Footer />
     </main>
