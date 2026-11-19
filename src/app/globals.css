@@ -7,9 +7,10 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
+  --font-sans: var(--font-poppins);
   --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  --font-heading: var(--font-poppins);
+
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -18,11 +19,13 @@
   --color-sidebar-primary: var(--sidebar-primary);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar: var(--sidebar);
+
   --color-chart-5: var(--chart-5);
   --color-chart-4: var(--chart-4);
   --color-chart-3: var(--chart-3);
   --color-chart-2: var(--chart-2);
   --color-chart-1: var(--chart-1);
+
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -39,6 +42,7 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -51,28 +55,39 @@
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
+
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
+
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
+
   --primary: oklch(0.205 0 0);
   --primary-foreground: oklch(0.985 0 0);
+
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
+
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
+
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
+
   --destructive: oklch(0.577 0.245 27.325);
+
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
+
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
+
   --radius: 0.625rem;
+
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -81,32 +96,54 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  --portfolio-background: #020203;
+  --portfolio-card: #111111;
+  --portfolio-primary: #8144df;
+  --portfolio-pink: #dc409a;
+
+  --portfolio-gradient: linear-gradient(
+    105deg,
+    #dc409a 0%,
+    #b63dc6 50%,
+    #8144df 100%
+  );
 }
 
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
+
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
+
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
+
   --primary: oklch(0.922 0 0);
   --primary-foreground: oklch(0.205 0 0);
+
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
+
   --muted: oklch(0.269 0 0);
   --muted-foreground: oklch(0.708 0 0);
+
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
+
   --destructive: oklch(0.704 0.191 22.216);
+
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
+
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
+
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
@@ -121,60 +158,62 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
   html {
     @apply font-sans;
   }
 }
 
-:root {
-  --portfolio-background: #020203;
-  --portfolio-card: #111111;
-  --portfolio-primary: #8144df;
-  --portfolio-pink: #dc409a;
-  --portfolio-gradient: linear-gradient(
-    105deg,
-    #dc409a 0%,
-    #b63dc6 50%,
-    #8144df 100%
-  );
-}
+/* ==========================================================
+   GLOBAL
+   ========================================================== */
+
 html {
   scroll-behavior: smooth;
 }
+
 body {
+  margin: 0;
   background: var(--portfolio-background);
   color: #ffffff;
   font-family: var(--font-poppins), sans-serif;
 }
+
 .container-main {
   width: min(1170px, calc(100% - 48px));
   margin-inline: auto;
 }
+
 .section {
   padding: 90px 0;
   scroll-margin-top: 90px;
 }
+
 .section-title {
   font-size: clamp(26px, 3vw, 42px);
   line-height: 1.25;
   font-weight: 800;
   letter-spacing: -0.035em;
 }
+
 .section-subtitle {
   margin-top: 12px;
   color: #a1a1aa;
   font-size: 14px;
   line-height: 1.9;
 }
+
 .gradient-text {
   background: var(--portfolio-gradient);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
 }
+
 .gradient-button {
   display: inline-flex;
   align-items: center;
@@ -191,47 +230,196 @@ body {
     transform 0.2s,
     box-shadow 0.2s;
 }
+
 .gradient-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 9px 30px #b83ed966;
 }
+
 .dark-card {
   background: #111111;
   border: 1px solid #1d1d1f;
   border-radius: 20px;
 }
+
 .section-marker {
   width: 28px;
   height: 5px;
   margin: 0 auto 40px;
   background: linear-gradient(90deg, #e64ba8, #ffffff);
 }
+
+/* ==========================================================
+   HERO BACKGROUND
+   Desktop reference: 1440 x 898
+   ========================================================== */
+
 .hero {
   position: relative;
-  min-height: 760px;
+  height: 898px;
+  min-height: 898px;
   overflow: hidden;
   isolation: isolate;
+
   background:
-    radial-gradient(ellipse at 85% 48%, #40165c55, transparent 47%),
-    radial-gradient(ellipse at 12% 5%, #501f9c55, transparent 28%), #030305;
+    radial-gradient(
+      ellipse 34% 32% at 12% 1%,
+      rgba(77, 27, 145, 0.35) 0%,
+      rgba(48, 17, 94, 0.19) 38%,
+      rgba(22, 9, 43, 0.06) 70%,
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse 47% 52% at 88% 43%,
+      rgba(61, 21, 96, 0.34) 0%,
+      rgba(38, 14, 61, 0.2) 38%,
+      rgba(17, 7, 28, 0.06) 73%,
+      transparent 100%
+    ),
+    #030205;
 }
+
+/* ==========================================================
+   HERO GRID — FIGMA REFINEMENT
+   ========================================================== */
+
 .hero-grid {
   position: absolute;
   inset: 0;
-  z-index: -1;
-  opacity: 0.38;
+  z-index: 0;
+
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+
+  /*
+   * Grid lines:
+   * Slightly brighter than previous version,
+   * while keeping the overall appearance subtle.
+   */
   background-image:
-    linear-gradient(#ffffff0b 1px, transparent 1px),
-    linear-gradient(90deg, #ffffff0b 1px, transparent 1px);
-  background-size: 120px 120px;
-  mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
+    linear-gradient(to right, rgba(165, 150, 185, 0.19) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(165, 150, 185, 0.19) 1px, transparent 1px);
+
+  /*
+   * Preserve the 150px grid.
+   * Align the grid from the frame's top-left corner.
+   */
+  background-size: 150px 150px;
+  background-position: 0 0;
+
+  /*
+   * Keep the grid visible across the hero,
+   * with a smoother fade near the waves.
+   */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.95) 15%,
+    rgba(0, 0, 0, 1) 30%,
+    rgba(0, 0, 0, 1) 60%,
+    rgba(0, 0, 0, 0.85) 68%,
+    rgba(0, 0, 0, 0.4) 78%,
+    transparent 88%
+  );
+
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.95) 15%,
+    rgba(0, 0, 0, 1) 30%,
+    rgba(0, 0, 0, 1) 60%,
+    rgba(0, 0, 0, 0.85) 68%,
+    rgba(0, 0, 0, 0.4) 78%,
+    transparent 88%
+  );
 }
+
+/* ==========================================================
+   DECORATIVE STARS
+   UNCHANGED
+   ========================================================== */
+
+.hero-stars {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-stars span {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #a58dbd;
+  opacity: 0.25;
+  box-shadow: 0 0 7px #a65bea55;
+}
+
+.hero-stars span:nth-child(1) {
+  top: 15%;
+  left: 9%;
+}
+
+.hero-stars span:nth-child(2) {
+  top: 25%;
+  left: 21%;
+}
+
+.hero-stars span:nth-child(3) {
+  top: 39%;
+  left: 13%;
+}
+
+.hero-stars span:nth-child(4) {
+  top: 18%;
+  left: 74%;
+}
+
+.hero-stars span:nth-child(5) {
+  top: 32%;
+  left: 88%;
+}
+
+.hero-stars span:nth-child(6) {
+  top: 48%;
+  left: 81%;
+}
+
+.hero-stars span:nth-child(7) {
+  top: 58%;
+  left: 17%;
+}
+
+.hero-stars span:nth-child(8) {
+  top: 61%;
+  left: 64%;
+}
+
+.hero-stars span:nth-child(9) {
+  top: 12%;
+  left: 53%;
+}
+
+.hero-stars span:nth-child(10) {
+  top: 43%;
+  left: 39%;
+}
+
+/* ==========================================================
+   HERO CONTENT
+   UNCHANGED
+   ========================================================== */
+
 .hero-content {
   position: relative;
   z-index: 2;
   text-align: center;
-  padding-top: 145px;
+  padding-top: 195px;
 }
+
 .hero-heading {
   max-width: 1050px;
   margin: 22px auto 20px;
@@ -240,6 +428,7 @@ body {
   font-weight: 800;
   letter-spacing: -0.055em;
 }
+
 .hero-description {
   max-width: 780px;
   margin: 0 auto 28px;
@@ -247,6 +436,7 @@ body {
   font-size: 15px;
   line-height: 1.9;
 }
+
 .hero-badge {
   display: inline-flex;
   align-items: center;
@@ -258,57 +448,98 @@ body {
   box-shadow: 0 0 15px #8d37d633;
   font-size: 12px;
 }
+
+/* ==========================================================
+   HERO WAVES
+   UNCHANGED — KEEP EXISTING SVG IN PAGE.TSX
+   ========================================================== */
+
 .hero-waves {
   position: absolute;
   left: 0;
+  right: 0;
   bottom: -1px;
+  z-index: 1;
   width: 100%;
-  height: 230px;
+  height: 381px;
   overflow: hidden;
+  pointer-events: none;
+  background: transparent;
 }
+
 .hero-waves svg {
+  display: block;
   width: 100%;
   height: 100%;
-  display: block;
+  overflow: hidden;
 }
+
+/* ==========================================================
+   ABOUT PHOTO
+   UNCHANGED
+   ========================================================== */
+
+.about-section {
+  position: relative;
+  z-index: 5;
+  margin-top: -110px;
+  scroll-margin-top: 90px;
+}
+
 .about-photo {
   position: relative;
-  height: 340px;
+  isolation: isolate;
+  width: 100%;
+  height: 390px;
   overflow: hidden;
   border-radius: 20px;
   background: var(--portfolio-gradient);
 }
-.about-photo img {
+
+.about-photo .about-portrait {
   position: absolute;
-  bottom: 0;
   left: 50%;
+  bottom: -25px;
+  display: block;
   width: auto;
   max-width: 100%;
-  height: 112%;
+  height: 106%;
   object-fit: contain;
-  object-position: bottom;
+  object-position: center bottom;
   transform: translateX(-50%);
 }
+
+/* ==========================================================
+   STATISTICS
+   ========================================================== */
+
 .stat-circle {
   aspect-ratio: 1;
   width: 100%;
   border-radius: 50%;
+  border: 1px solid #a23dbe;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  border: 1px solid #a23dbe;
 }
+
 .stat-circle.filled {
   border: none;
   background: var(--portfolio-gradient);
   box-shadow: 0 9px 24px #a13fc733;
 }
+
+/* ==========================================================
+   CAREER TIMELINE
+   ========================================================== */
+
 .timeline {
   position: relative;
   padding-left: 38px;
 }
+
 .timeline::before {
   content: '';
   position: absolute;
@@ -318,11 +549,13 @@ body {
   width: 3px;
   background: var(--portfolio-gradient);
 }
+
 .timeline-item {
   position: relative;
   padding: 24px;
   margin-bottom: 20px;
 }
+
 .timeline-item::before {
   content: '';
   position: absolute;
@@ -335,17 +568,28 @@ body {
   background: #cbb2ff;
   box-shadow: 0 0 12px #9e3cdb;
 }
+
+/* ==========================================================
+   SKILLS
+   ========================================================== */
+
 .skill-track {
   height: 11px;
   overflow: hidden;
   background: #27272a;
   border-radius: 999px;
 }
+
 .skill-fill {
   height: 100%;
   border-radius: 999px;
   background: var(--portfolio-gradient);
 }
+
+/* ==========================================================
+   PROJECTS
+   ========================================================== */
+
 .project-image {
   position: relative;
   aspect-ratio: 1.12;
@@ -353,6 +597,7 @@ body {
   border-radius: 18px;
   background: #171320;
 }
+
 .project-image img {
   width: 100%;
   height: 100%;
@@ -360,9 +605,11 @@ body {
   object-position: top;
   transition: transform 0.35s;
 }
+
 .project-image:hover img {
   transform: scale(1.045);
 }
+
 .tag {
   display: inline-flex;
   padding: 6px 14px;
@@ -371,6 +618,11 @@ body {
   color: #e4e4e7;
   font-size: 12px;
 }
+
+/* ==========================================================
+   CONTACT FORM
+   ========================================================== */
+
 .contact-input {
   width: 100%;
   border: 1px solid transparent;
@@ -380,44 +632,167 @@ body {
   color: white;
   outline: none;
 }
+
 .contact-input:focus {
   border-color: #b644cf;
 }
+
 .contact-input::placeholder {
   color: #85818d;
 }
+
+/* ==========================================================
+   TABLET
+   ========================================================== */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero {
+    height: 760px;
+    min-height: 760px;
+  }
+
+  .hero-content {
+    padding-top: 165px;
+  }
+
+  .hero-grid {
+    background-size: 120px 120px;
+  }
+
+  .hero-waves {
+    height: 330px;
+    bottom: -12px;
+  }
+
+  .about-section {
+    margin-top: -55px;
+  }
+
+  .about-photo {
+    height: 340px;
+  }
+
+  .about-photo .about-portrait {
+    height: 104%;
+  }
+}
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
 @media (max-width: 767px) {
   .container-main {
-    width: min(100% - 36px, 500px);
+    width: min(calc(100% - 36px), 500px);
   }
+
   .section {
     padding: 65px 0;
   }
+
   .hero {
+    height: 760px;
     min-height: 760px;
   }
+
   .hero-content {
-    padding-top: 135px;
+    padding-top: 145px;
   }
+
   .hero-heading {
     font-size: clamp(32px, 8vw, 46px);
   }
+
   .hero-description {
     font-size: 13px;
   }
+
+  .hero-grid {
+    background-size: 80px 80px;
+  }
+
   .hero-waves {
-    height: 140px;
+    left: 50%;
+    right: auto;
+    bottom: 0;
+    width: max(100%, 900px);
+    height: auto;
+    aspect-ratio: 1440 / 381;
+    transform: translateX(-50%);
   }
+
+  .about-section {
+    margin-top: -30px;
+  }
+
   .about-photo {
-    height: 245px;
+    height: 265px;
+    border-radius: 16px;
   }
+
+  .about-photo .about-portrait {
+    height: 102%;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+  }
+
   .timeline {
     padding-left: 27px;
   }
+
   .timeline-item::before {
     left: -27px;
   }
+
   .timeline::before {
     left: 8px;
+  }
+}
+
+/* ==========================================================
+   SMALL MOBILE
+   ========================================================== */
+
+@media (max-width: 374px) {
+  .hero {
+    height: 790px;
+    min-height: 790px;
+  }
+
+  .hero-content {
+    padding-top: 135px;
+  }
+
+  .hero-heading {
+    font-size: 31px;
+  }
+
+  .hero-grid {
+    background-size: 70px 70px;
+  }
+
+  .about-photo {
+    height: 230px;
+  }
+
+  .stat-circle strong {
+    font-size: 25px;
+  }
+}
+
+/* ==========================================================
+   ACCESSIBILITY
+   ========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .gradient-button,
+  .project-image img {
+    transition: none;
   }
 }

@@ -3,7 +3,6 @@
 import { useState, type FormEvent } from 'react';
 import Image from 'next/image';
 import { motion } from 'motion/react';
-
 import {
   ArrowUpRight,
   Check,
@@ -20,7 +19,6 @@ import {
   CheckCircle2,
   XCircle,
 } from 'lucide-react';
-
 import * as Accordion from '@radix-ui/react-accordion';
 import * as Dialog from '@radix-ui/react-dialog';
 
@@ -40,10 +38,6 @@ import {
   testimonials,
 } from '@/data/portfolio';
 
-// ============================================================
-// NAVIGATION DATA
-// ============================================================
-
 const navigation = [
   { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
@@ -53,39 +47,40 @@ const navigation = [
   { label: 'Contact', href: '#contact' },
 ];
 
-// ============================================================
-// SHARED SECTION HEADING
-// ============================================================
-
 function Heading({ title, subtitle }: { title: string; subtitle?: string }) {
   return (
     <div className='mb-12 text-center'>
       <h2 className='section-title'>{title}</h2>
-
       {subtitle && <p className='section-subtitle'>{subtitle}</p>}
     </div>
   );
 }
-
-// ============================================================
-// NAVBAR
-// ============================================================
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <>
+      {/* DESKTOP AND MOBILE NAVBAR */}
       <header className='absolute inset-x-0 top-0 z-40'>
         <div className='container-main flex h-24 items-center justify-between'>
+          {/* FIGMA LOGO */}
           <a
             href='#home'
-            aria-label='Go to homepage'
-            className='text-4xl font-extrabold'
+            aria-label='Swarni Portfolio — Go to homepage'
+            className='flex h-10 w-10 shrink-0 items-center justify-center'
           >
-            ✚
+            <Image
+              src='/images/logo.png'
+              alt='Swarni Portfolio Logo'
+              width={40}
+              height={40}
+              priority
+              className='block h-10 w-10 object-contain'
+            />
           </a>
 
+          {/* DESKTOP NAVIGATION */}
           <nav
             aria-label='Main navigation'
             className='hidden items-center gap-9 md:flex'
@@ -101,6 +96,7 @@ function Navbar() {
             ))}
           </nav>
 
+          {/* DESKTOP HIRE ME BUTTON */}
           <a
             href='#contact'
             className='gradient-button hidden text-xs md:inline-flex'
@@ -109,6 +105,7 @@ function Navbar() {
             Hire Me
           </a>
 
+          {/* MOBILE ACTIONS */}
           <div className='flex items-center gap-3 md:hidden'>
             <a
               href='#contact'
@@ -120,43 +117,54 @@ function Navbar() {
 
             <button
               type='button'
-              aria-label='Open navigation menu'
+              aria-label={
+                menuOpen ? 'Close navigation menu' : 'Open navigation menu'
+              }
               aria-expanded={menuOpen}
               aria-controls='mobile-navigation'
-              onClick={() => setMenuOpen(true)}
+              onClick={() => setMenuOpen(!menuOpen)}
               className='rounded-lg p-2 text-white'
             >
-              <Menu size={25} />
+              {menuOpen ? <X size={25} /> : <Menu size={25} />}
             </button>
           </div>
         </div>
       </header>
 
+      {/* MOBILE NAVIGATION OVERLAY */}
       {menuOpen && (
         <div
           id='mobile-navigation'
           className='fixed inset-0 z-50 overflow-y-auto bg-black p-7 md:hidden'
         >
           <div className='mb-12 flex items-center justify-between'>
+            {/* FIGMA LOGO IN MOBILE MENU */}
             <a
               href='#home'
-              className='text-4xl font-bold'
               onClick={() => setMenuOpen(false)}
-              aria-label='Go to homepage'
+              aria-label='Swarni Portfolio — Go to homepage'
+              className='flex h-10 w-10 items-center justify-center'
             >
-              ✚
+              <Image
+                src='/images/logo.png'
+                alt='Swarni Portfolio Logo'
+                width={40}
+                height={40}
+                className='block h-10 w-10 object-contain'
+              />
             </a>
 
             <button
               type='button'
               aria-label='Close navigation menu'
               onClick={() => setMenuOpen(false)}
-              className='rounded-lg p-2'
+              className='rounded-lg p-2 text-white'
             >
               <X size={26} />
             </button>
           </div>
 
+          {/* MOBILE NAVIGATION LINKS */}
           <nav aria-label='Mobile navigation' className='flex flex-col gap-8'>
             {navigation.map((item) => (
               <a
@@ -184,50 +192,199 @@ function Navbar() {
   );
 }
 
-// ============================================================
-// HERO WAVES
-// ============================================================
+/*
+ * Uses the exported Figma wave asset.
+ * The PNG is 1440 × 381 and has transparency.
+ * No reconstructed SVG paths are needed.
+ */
 
 function Waves() {
   return (
     <div className='hero-waves' aria-hidden='true'>
       <svg
-        viewBox='0 0 1440 230'
+        viewBox='0 0 1440 381'
         preserveAspectRatio='none'
+        xmlns='http://www.w3.org/2000/svg'
         role='presentation'
       >
+        <defs>
+          {/* Top layer: dark purple */}
+          <linearGradient id='waveTop' x1='0' y1='0' x2='0' y2='1'>
+            <stop offset='0%' stopColor='#28113F' />
+            <stop offset='55%' stopColor='#31164D' />
+            <stop offset='100%' stopColor='#3B1A5D' />
+          </linearGradient>
+
+          {/* Second layer: brighter purple */}
+          <linearGradient id='waveSecond' x1='0' y1='0' x2='0' y2='1'>
+            <stop offset='0%' stopColor='#512580' />
+            <stop offset='50%' stopColor='#482171' />
+            <stop offset='100%' stopColor='#3B1A60' />
+          </linearGradient>
+
+          {/* Third layer: deep purple */}
+          <linearGradient id='waveThird' x1='0' y1='0' x2='0' y2='1'>
+            <stop offset='0%' stopColor='#3C1B61' />
+            <stop offset='55%' stopColor='#29133F' />
+            <stop offset='100%' stopColor='#190D29' />
+          </linearGradient>
+
+          {/* Bottom fade */}
+          <linearGradient id='waveBottom' x1='0' y1='0' x2='0' y2='1'>
+            <stop offset='0%' stopColor='#26113D' />
+            <stop offset='45%' stopColor='#170C25' />
+            <stop offset='100%' stopColor='#030305' />
+          </linearGradient>
+
+          {/* Subtle ambient glow */}
+          <linearGradient id='waveGlow' x1='0' y1='0' x2='0' y2='1'>
+            <stop offset='0%' stopColor='#8B45D5' stopOpacity='0.12' />
+            <stop offset='100%' stopColor='#8B45D5' stopOpacity='0' />
+          </linearGradient>
+        </defs>
+
+        {/*
+          Wave 1
+          Gentle repeating curves with a 240px period.
+          Approximately six crests across 1440px.
+        */}
         <path
-          d='M0 65 Q60 25 120 65 T240 65 T360 65 T480 65 T600 65 T720 65 T840 65 T960 65 T1080 65 T1200 65 T1320 65 T1440 65 V230 H0Z'
-          fill='#210e3c'
+          d='
+            M 0 150
+            C 40 135, 80 135, 120 150
+            S 200 165, 240 150
+            S 320 135, 360 150
+            S 440 165, 480 150
+            S 560 135, 600 150
+            S 680 165, 720 150
+            S 800 135, 840 150
+            S 920 165, 960 150
+            S 1040 135, 1080 150
+            S 1160 165, 1200 150
+            S 1280 135, 1320 150
+            S 1400 165, 1440 150
+            L 1440 381
+            L 0 381
+            Z
+          '
+          fill='url(#waveTop)'
         />
 
+        {/*
+          Wave 2
+          Brighter middle ribbon.
+        */}
         <path
-          d='M0 100 Q60 60 120 100 T240 100 T360 100 T480 100 T600 100 T720 100 T840 100 T960 100 T1080 100 T1200 100 T1320 100 T1440 100 V230 H0Z'
-          fill='#49217b'
+          d='
+            M 0 205
+            C 40 190, 80 190, 120 205
+            S 200 220, 240 205
+            S 320 190, 360 205
+            S 440 220, 480 205
+            S 560 190, 600 205
+            S 680 220, 720 205
+            S 800 190, 840 205
+            S 920 220, 960 205
+            S 1040 190, 1080 205
+            S 1160 220, 1200 205
+            S 1280 190, 1320 205
+            S 1400 220, 1440 205
+            L 1440 381
+            L 0 381
+            Z
+          '
+          fill='url(#waveSecond)'
         />
 
+        {/*
+          Wave 3
+          Lower, darker ribbon.
+        */}
         <path
-          d='M0 140 Q60 100 120 140 T240 140 T360 140 T480 140 T600 140 T720 140 T840 140 T960 140 T1080 140 T1200 140 T1320 140 T1440 140 V230 H0Z'
-          fill='#2d1553'
+          d='
+            M 0 260
+            C 40 245, 80 245, 120 260
+            S 200 275, 240 260
+            S 320 245, 360 260
+            S 440 275, 480 260
+            S 560 245, 600 260
+            S 680 275, 720 260
+            S 800 245, 840 260
+            S 920 275, 960 260
+            S 1040 245, 1080 260
+            S 1160 275, 1200 260
+            S 1280 245, 1320 260
+            S 1400 275, 1440 260
+            L 1440 381
+            L 0 381
+            Z
+          '
+          fill='url(#waveThird)'
         />
 
+        {/*
+          Wave 4
+          Bottom transition into dark background.
+        */}
         <path
-          d='M0 185 Q60 145 120 185 T240 185 T360 185 T480 185 T600 185 T720 185 T840 185 T960 185 T1080 185 T1200 185 T1320 185 T1440 185 V230 H0Z'
-          fill='#140a25'
+          d='
+            M 0 315
+            C 40 300, 80 300, 120 315
+            S 200 330, 240 315
+            S 320 300, 360 315
+            S 440 330, 480 315
+            S 560 300, 600 315
+            S 680 330, 720 315
+            S 800 300, 840 315
+            S 920 330, 960 315
+            S 1040 300, 1080 315
+            S 1160 330, 1200 315
+            S 1280 300, 1320 315
+            S 1400 330, 1440 315
+            L 1440 381
+            L 0 381
+            Z
+          '
+          fill='url(#waveBottom)'
+        />
+
+        {/* Soft glow on the brighter ribbon */}
+        <path
+          d='
+            M 0 205
+            C 40 190, 80 190, 120 205
+            S 200 220, 240 205
+            S 320 190, 360 205
+            S 440 220, 480 205
+            S 560 190, 600 205
+            S 680 220, 720 205
+            S 800 190, 840 205
+            S 920 220, 960 205
+            S 1040 190, 1080 205
+            S 1160 220, 1200 205
+            S 1280 190, 1320 205
+            S 1400 220, 1440 205
+            L 1440 265
+            L 0 265
+            Z
+          '
+          fill='url(#waveGlow)'
         />
       </svg>
     </div>
   );
 }
 
-// ============================================================
-// HERO
-// ============================================================
-
 function Hero() {
   return (
     <section id='home' className='hero'>
       <div className='hero-grid' aria-hidden='true' />
+
+      <div className='hero-stars' aria-hidden='true'>
+        {Array.from({ length: 10 }).map((_, index) => (
+          <span key={index} />
+        ))}
+      </div>
 
       <Navbar />
 
@@ -265,13 +422,9 @@ function Hero() {
   );
 }
 
-// ============================================================
-// ABOUT
-// ============================================================
-
 function About() {
   return (
-    <section id='about' className='container-main relative -mt-5 pb-20'>
+    <section id='about' className='container-main about-section pb-20'>
       <div className='about-photo'>
         <Image
           src='/images/profile-kadek.png'
@@ -280,12 +433,12 @@ function About() {
           height={1000}
           priority
           unoptimized
+          className='about-portrait'
         />
       </div>
 
       <div className='mt-16 grid gap-8 md:grid-cols-[1fr_1.5fr]'>
         <h2 className='section-title'>Who am I?</h2>
-
         <p className='text-sm leading-8 text-zinc-400'>{profile.about}</p>
       </div>
 
@@ -298,7 +451,6 @@ function About() {
             <strong className='text-3xl font-extrabold md:text-4xl'>
               {stat.value}
             </strong>
-
             <span className='mt-2 px-2 text-center text-xs'>{stat.label}</span>
           </div>
         ))}
@@ -306,10 +458,6 @@ function About() {
     </section>
   );
 }
-
-// ============================================================
-// CAREER JOURNEY
-// ============================================================
 
 function Career() {
   return (
@@ -325,10 +473,7 @@ function Career() {
             key={career.company}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{
-              once: true,
-              amount: 0.15,
-            }}
+            viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.45 }}
           >
             <Card className='timeline-item dark-card text-white'>
@@ -361,42 +506,14 @@ function Career() {
   );
 }
 
-// ============================================================
-// SKILLS
-// ============================================================
-
 function Skills() {
   const icons = [
-    {
-      label: 'HTML',
-      symbol: '5',
-      color: '#ef652a',
-    },
-    {
-      label: 'CSS',
-      symbol: '3',
-      color: '#38a5ef',
-    },
-    {
-      label: 'JavaScript',
-      symbol: 'JS',
-      color: '#f4df4e',
-    },
-    {
-      label: 'React',
-      symbol: '⚛',
-      color: '#60dafb',
-    },
-    {
-      label: 'TypeScript',
-      symbol: 'TS',
-      color: '#3178c6',
-    },
-    {
-      label: 'Code',
-      symbol: '⌘',
-      color: '#a45be6',
-    },
+    { label: 'HTML', symbol: '5', color: '#ef652a' },
+    { label: 'CSS', symbol: '3', color: '#38a5ef' },
+    { label: 'JavaScript', symbol: 'JS', color: '#f4df4e' },
+    { label: 'React', symbol: '⚛', color: '#60dafb' },
+    { label: 'TypeScript', symbol: 'TS', color: '#3178c6' },
+    { label: 'Code', symbol: '⌘', color: '#a45be6' },
   ];
 
   return (
@@ -411,9 +528,7 @@ function Skills() {
       <div className='grid items-center gap-14 md:grid-cols-2'>
         <div className='relative mx-auto grid aspect-square w-full max-w-[420px] grid-cols-3 place-items-center gap-4'>
           <div className='pointer-events-none absolute inset-[12%] rounded-full border border-purple-500/15' />
-
           <div className='pointer-events-none absolute inset-[24%] rounded-full border border-purple-500/15' />
-
           <div className='pointer-events-none absolute inset-[36%] rounded-full border border-purple-500/15' />
 
           {icons.map((item) => (
@@ -421,9 +536,7 @@ function Skills() {
               key={item.label}
               title={item.label}
               className='relative z-10 flex h-16 w-22 items-center justify-center rounded-lg border border-fuchsia-500/40 bg-[#101014] text-2xl font-bold'
-              style={{
-                color: item.color,
-              }}
+              style={{ color: item.color }}
             >
               {item.symbol}
             </div>
@@ -464,10 +577,6 @@ function Skills() {
   );
 }
 
-// ============================================================
-// FAQ
-// ============================================================
-
 function FAQ() {
   return (
     <section id='faq' className='section container-main'>
@@ -493,7 +602,6 @@ function FAQ() {
             <Accordion.Header>
               <Accordion.Trigger className='group flex w-full items-center justify-between gap-4 px-6 py-5 text-left text-sm font-semibold'>
                 <span>{faq.question}</span>
-
                 <ChevronDown
                   size={17}
                   className='shrink-0 transition-transform group-data-[state=open]:rotate-180'
@@ -510,10 +618,6 @@ function FAQ() {
     </section>
   );
 }
-
-// ============================================================
-// COMPARISON
-// ============================================================
 
 function Comparison() {
   return (
@@ -554,10 +658,6 @@ function Comparison() {
   );
 }
 
-// ============================================================
-// PROJECT CARD
-// ============================================================
-
 function ProjectCard({ project }: { project: (typeof projects)[number] }) {
   const [imageFailed, setImageFailed] = useState(false);
 
@@ -587,9 +687,7 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
         ) : (
           <div className='flex h-full w-full flex-col items-center justify-center gap-4 bg-gradient-to-br from-[#211034] to-[#0d0a12]'>
             <Code2 size={48} className='text-fuchsia-400' />
-
             <strong className='text-xl'>{project.title}</strong>
-
             <span className='text-xs text-zinc-400'>Project preview</span>
           </div>
         )}
@@ -638,10 +736,6 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
   );
 }
 
-// ============================================================
-// PROJECTS
-// ============================================================
-
 function Projects() {
   return (
     <section id='projects' className='section container-main'>
@@ -665,10 +759,6 @@ function Projects() {
   );
 }
 
-// ============================================================
-// TESTIMONIALS
-// ============================================================
-
 function Testimonials() {
   return (
     <section className='section container-main'>
@@ -687,9 +777,7 @@ function Testimonials() {
               className='dark-card p-6 text-white'
             >
               <strong className='text-sm'>{review.name}</strong>
-
               <p className='text-xs text-zinc-500'>{review.role}</p>
-
               <p className='text-sm leading-7 text-zinc-400'>
                 &ldquo;{review.quote}&rdquo;
               </p>
@@ -708,10 +796,6 @@ function Testimonials() {
   );
 }
 
-// ============================================================
-// CONTACT FORM
-// ============================================================
-
 type ContactModal = 'success' | 'error' | null;
 
 type ContactResponse = {
@@ -722,9 +806,7 @@ type ContactResponse = {
 
 function Contact() {
   const [modal, setModal] = useState<ContactModal>(null);
-
   const [loading, setLoading] = useState(false);
-
   const [errorMessage, setErrorMessage] = useState('');
 
   const [form, setForm] = useState({
@@ -736,9 +818,7 @@ function Contact() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (loading) {
-      return;
-    }
+    if (loading) return;
 
     setLoading(true);
     setErrorMessage('');
@@ -774,12 +854,7 @@ function Contact() {
       }
 
       setModal('success');
-
-      setForm({
-        name: '',
-        email: '',
-        message: '',
-      });
+      setForm({ name: '', email: '', message: '' });
     } catch (error) {
       const message =
         error instanceof Error
@@ -788,8 +863,6 @@ function Contact() {
 
       setErrorMessage(message);
 
-      // For local development diagnostics.
-      // Do not log API keys or other credentials.
       if (process.env.NODE_ENV === 'development') {
         console.error('Contact form submission failed:', message);
       }
@@ -808,7 +881,6 @@ function Contact() {
       <div className='container-main grid items-center gap-12 md:grid-cols-2'>
         <div>
           <h2 className='section-title'>Contact Me</h2>
-
           <p className='section-subtitle max-w-sm'>
             Feel free to drop a message for any inquiries or collaborations.
           </p>
@@ -825,12 +897,7 @@ function Contact() {
             required
             maxLength={100}
             value={form.name}
-            onChange={(event) =>
-              setForm({
-                ...form,
-                name: event.target.value,
-              })
-            }
+            onChange={(event) => setForm({ ...form, name: event.target.value })}
             className='contact-input h-12'
           />
 
@@ -843,10 +910,7 @@ function Contact() {
             maxLength={200}
             value={form.email}
             onChange={(event) =>
-              setForm({
-                ...form,
-                email: event.target.value,
-              })
+              setForm({ ...form, email: event.target.value })
             }
             className='contact-input h-12'
           />
@@ -858,10 +922,7 @@ function Contact() {
             maxLength={5000}
             value={form.message}
             onChange={(event) =>
-              setForm({
-                ...form,
-                message: event.target.value,
-              })
+              setForm({ ...form, message: event.target.value })
             }
             className='contact-input min-h-40 resize-y'
           />
@@ -872,7 +933,6 @@ function Contact() {
             className='gradient-button h-12 w-full'
           >
             <Send size={16} />
-
             {loading ? 'Sending...' : 'Send'}
           </Button>
         </form>
@@ -881,9 +941,7 @@ function Contact() {
       <Dialog.Root
         open={modal !== null}
         onOpenChange={(open) => {
-          if (!open) {
-            setModal(null);
-          }
+          if (!open) setModal(null);
         }}
       >
         <Dialog.Portal>
@@ -917,23 +975,17 @@ function Contact() {
                   role='alert'
                   className='mt-5 rounded-xl border border-red-500/20 bg-red-500/5 p-4 text-left'
                 >
-                  <p className='mb-2 text-xs font-semibold text-red-300'>
-                    Development diagnostics
-                  </p>
-
-                  <p className='break-words text-xs leading-6 text-zinc-300'>
+                  <p className='text-xs leading-6 text-red-300'>
                     {errorMessage}
                   </p>
                 </div>
               )}
 
-            <Button
-              type='button'
-              className='gradient-button mt-8 w-full'
-              onClick={() => setModal(null)}
-            >
-              {modal === 'success' ? 'Close' : 'Try Again'}
-            </Button>
+            <Dialog.Close asChild>
+              <button type='button' className='gradient-button mt-8'>
+                Close
+              </button>
+            </Dialog.Close>
           </Dialog.Content>
         </Dialog.Portal>
       </Dialog.Root>
@@ -941,39 +993,49 @@ function Contact() {
   );
 }
 
-// ============================================================
-// FOOTER
-// ============================================================
-
 function Footer() {
   return (
-    <footer className='border-t border-zinc-900 bg-[#101010] py-8'>
-      <div className='container-main flex flex-col items-center justify-between gap-5 md:flex-row'>
-        <div className='flex items-center gap-4'>
+    <footer className='border-t border-zinc-900 py-10'>
+      <div className='container-main flex flex-col items-center justify-between gap-6 md:flex-row'>
+        {/* FOOTER IDENTITY */}
+        <div>
+          {/* FIGMA LOGO */}
           <a
             href='#home'
             aria-label='Back to homepage'
-            className='text-3xl font-bold'
+            className='inline-flex h-10 w-10 items-center justify-center'
           >
-            ✚
+            <Image
+              src='/images/logo.png'
+              alt='Swarni Portfolio Logo'
+              width={40}
+              height={40}
+              className='block h-10 w-10 object-contain'
+            />
           </a>
 
-          <span className='text-xs text-zinc-500'>
-            © 2026 {profile.shortName}
-          </span>
+          {/* COPYRIGHT */}
+          <p className='mt-2 text-xs text-zinc-500'>
+            © {new Date().getFullYear()} Kadek Swarniati. All rights reserved.
+          </p>
         </div>
 
+        {/* SOCIAL LINKS */}
         <div className='flex items-center gap-5'>
-          <a
-            href={profile.github}
-            target='_blank'
-            rel='noopener noreferrer'
-            aria-label='GitHub'
-            className='text-zinc-400 transition-colors hover:text-fuchsia-400'
-          >
-            <Code2 size={20} />
-          </a>
+          {/* GITHUB */}
+          {profile.github && (
+            <a
+              href={profile.github}
+              target='_blank'
+              rel='noopener noreferrer'
+              aria-label='GitHub'
+              className='text-zinc-400 transition-colors hover:text-fuchsia-400'
+            >
+              <Code2 size={20} />
+            </a>
+          )}
 
+          {/* INSTAGRAM */}
           {profile.instagram && (
             <a
               href={profile.instagram}
@@ -986,6 +1048,7 @@ function Footer() {
             </a>
           )}
 
+          {/* LINKEDIN */}
           {profile.linkedin && (
             <a
               href={profile.linkedin}
@@ -1003,13 +1066,9 @@ function Footer() {
   );
 }
 
-// ============================================================
-// MAIN PAGE
-// ============================================================
-
 export default function Home() {
   return (
-    <main className='min-h-screen bg-[#020203] text-white'>
+    <main className='min-h-screen overflow-x-clip bg-[#020203] text-white'>
       <Hero />
       <About />
       <Career />

@@ -6,7 +6,7 @@ export const profile = {
   location: 'Jakarta, Indonesia',
 
   introduction:
-    "Hi, I'm Kadek, a statistician and software developer based in Jakarta. I build modern web applications and data-intensive digital solutions, combining statistical expertise with software engineering.",
+    "Hi, I'm Swarni, a statistician and software developer based in Jakarta. I build modern web applications and data-intensive digital solutions, combining statistical expertise with software engineering.",
 
   about:
     'My professional background is in official statistics and quantitative research. Independently, I develop full-stack applications, AI-oriented tools, and data-driven digital products using modern engineering technologies.',
